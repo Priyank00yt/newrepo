@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layered Color Slider</title>
+  <style>
+    .colorBox {
+      width: 200px;
+      height: 100px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="colorBox" id="color1">Color 1</div>
+  <div class="colorBox" id="color2">Color 2</div>
+  <div class="colorBox" id="color3">Color 3</div>
+  <div class="colorBox" id="color4">Color 4</div>
+  <div class="colorBox" id="color5">Color 5</div>
+  <div class="colorBox" id="color6">Color 6</div>
+  <div class="colorBox" id="color7">Color 7</div>
+
+  <button onclick="previousColor()">Previous</button>
+  <button onclick="nextColor()">Next</button>
+
+  <script>
+    const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+    let currentIndex = 0;
+
+    function updateColor() {
+      for (let i = 0; i < colors.length; i++) {
+        const colorBox = document.getElementById(`color${i + 1}`);
+        if (i === currentIndex) {
+          colorBox.style.display = "flex";
+          colorBox.style.backgroundColor = colors[currentIndex];
+          colorBox.textContent = colors[currentIndex];
+        } else {
+          colorBox.style.display = "none";
+        }
+      }
+    }
+
+    function nextColor() {
+      currentIndex = (currentIndex + 1) % colors.length;
+      updateColor();
+    }
+
+    function previousColor() {
+      currentIndex = (currentIndex - 1 + colors.length) % colors.length;
+      updateColor();
+    }
+
+    // Initial color update
+    updateColor();
+  </script>
+
+</body>
+</html>

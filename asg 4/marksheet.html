@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marksheet</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    #result {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Subject 1</td>
+        <td><input type="number" id="subject1" value="0"></td>
+      </tr>
+      <tr>
+        <td>Subject 2</td>
+        <td><input type="number" id="subject2" value="0"></td>
+      </tr>
+      <tr>
+        <td>Subject 3</td>
+        <td><input type="number" id="subject3" value="0"></td>
+      </tr>
+      <tr>
+        <td>Subject 4</td>
+        <td><input type="number" id="subject4" value="0"></td>
+      </tr>
+      <tr>
+        <td>Subject 5</td>
+        <td><input type="number" id="subject5" value="0"></td>
+      </tr>
+      <tr>
+        <td>Subject 6</td>
+        <td><input type="number" id="subject6" value="0"></td>
+      </tr>
+      <tr>
+        <td>Subject 7</td>
+        <td><input type="number" id="subject7" value="0"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button onclick="calculateResult()">Calculate Result</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateResult() {
+      const marks = [
+        parseInt(document.getElementById("subject1").value),
+        parseInt(document.getElementById("subject2").value),
+        parseInt(document.getElementById("subject3").value),
+        parseInt(document.getElementById("subject4").value),
+        parseInt(document.getElementById("subject5").value),
+        parseInt(document.getElementById("subject6").value),
+        parseInt(document.getElementById("subject7").value),
+      ];
+
+      const totalMarks = marks.reduce((sum, mark) => sum + mark, 0);
+      const percentage = (totalMarks / (marks.length * 100)) * 100;
+
+      const resultElement = document.getElementById("result");
+      resultElement.innerHTML = `
+        <p>Total Marks: ${totalMarks}</p>
+        <p>Percentage: ${percentage.toFixed(2)}%</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
